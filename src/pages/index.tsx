@@ -11,11 +11,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   let { hasNewDeploy } = useHasNewDeploy();
+  const curSha = process.env.VERCEL_GIT_COMMIT_SHA || "no-sha-found";
 
   return (
     hasNewDeploy ? (
       <div>
         <h1> New version available!</h1>
+        <small>Current SHA: {curSha}</small>
         <button onClick={() => window.location.reload()}>Refresh</button>
       </div>
     ) 
@@ -114,6 +116,8 @@ export default function Home() {
               priority
             />
           </div>
+          <br />
+          <small>Current SHA: {curSha}</small>
         </div>
 
         <div className={styles.grid}>
