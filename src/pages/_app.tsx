@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
     const config = {
       method: `get`,
-      url: `https://api.vercel.com/v6/deployments?app=${process.env.APP_NAME}&projectId=${process.env.PROJECT_ID}&state=ready&target=production`,
+      url: `https://api.vercel.com/v6/deployments?app=${process.env.APP_NAME}&limit=5&projectId=${process.env.PROJECT_ID}&state=ready&target=production`,
       headers: {
         "Authorization": `Bearer ${process.env.VERCEL_TOKEN}`
       }
@@ -30,6 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
     })
     .then((data) => {
       console.log(data);
+      const isLatestVersion = envVariables.verceGitCommitSha === data?.deployments[0]?.meta?.githubCommitSha;
+      !isLatestVersion && alert("New Version Available! Please Reload the page...");
     })
     .catch((err) => {
       console.error(err);
