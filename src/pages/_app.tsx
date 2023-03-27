@@ -6,8 +6,16 @@ import getDeployments from "@/pages/api/get-deployments";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    console.log("Current Version: ", process.env.CURRENT_VERSION);
-    console.log("Latest Version: ", process.env.LATEST_VERSION);
+    let envVariables = {
+      "curVersion": process.env.CURRENT_VERSION,
+      "latestVersion": process.env.LATEST_VERSION,
+      "appName": process.env.APP_NAME,
+      "projectId": process.env.PROJECT_ID,
+      "bearerToken": process.env.VERCEL_TOKEN,
+      "verceGitCommitSha": process.env.VERCEL_GIT_COMMIT_SHA
+    }
+
+    console.log(envVariables);
 
     const config = {
       method: `get`,
