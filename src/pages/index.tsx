@@ -98,7 +98,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
+        <div className={styles.center} style={{display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
           <Image
             className={styles.logo}
             src="/next.svg"
